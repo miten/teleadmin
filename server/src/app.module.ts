@@ -23,11 +23,7 @@ const MONGO = process.env.MONGODB_URI || 'mongodb://localhost/nest';
   controllers: [AppController],
   providers: [
       AppService,
-      {
-          provide: APP_GUARD,
-          useClass: RolesGuard,
-      },
   ],
-  exports: []
+  exports: [],
 })
 export class AppModule {}
