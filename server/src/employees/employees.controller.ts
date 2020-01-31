@@ -1,8 +1,8 @@
-import {Controller, Get, Post, Query, Param, UseGuards, SetMetadata, Logger} from '@nestjs/common';
+import {Controller, Get, Param, UseGuards, Logger, SetMetadata} from '@nestjs/common';
 import { EmployeesService } from './employees.service';
-import  {RolesGuard} from '../guards/roles.guard'
-import  {Roles} from '../guards/roles.decorator'
+import { Roles } from '../guards/roles.decorator';
 import { AuthGuard } from '@nestjs/passport';
+import {RolesGuard} from '../guards/roles.guard'
 const logger = new Logger();
 
 
@@ -17,12 +17,10 @@ export class EmployeesController {
         return this.Employeeservice.getSessionId();
     }
 
-    @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'), RolesGuard)
+    @Roles(1, 2)
     @Get(':id')
-    @Roles(1,2)
     async employee(@Param('id') id: number) {
         return this.Employeeservice.getEmployeeInfos(id);
     }
-
-
 }

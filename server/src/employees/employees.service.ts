@@ -9,7 +9,6 @@ export class EmployeesService {
         return 23434343434;
     }
 
-
     getEmployeeInfos(params) {
         return employees.find(x => x.code == params);
     }
