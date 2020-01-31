@@ -1,0 +1,26 @@
+<div class="content" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card>
+    <img class="logo" [src]="logo" style="margin-top: -90px;">
+    
+    <form class="form" fxLayout="column" fxLayoutAlign="center center" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+      <mat-form-field appearance="legacy">
+        <mat-label>Username</mat-label>
+        <input formControlName="username" matInput type="text">
+        <mat-icon matSuffix>alternate_email</mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field appearance="legacy">
+        <mat-label>Password</mat-label>
+        <input formControlName="password" matInput type="password">
+        <mat-icon matSuffix>vpn_key</mat-icon>
+      </mat-form-field>
+  
+      <button mat-raised-button type="submit" [disabled]="!loginForm.valid" value="Submit">
+        Connexion
+      </button>
+    </form>
+
+  
+    <!-- <p routerLink="/register">Pas encore inscrit ?</p> -->
+</mat-card>
+  </div>

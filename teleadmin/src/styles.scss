@@ -1,1 +1,70 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+$green-color: #196058;
+$blue-color: #0070D4;
+$bck-color: #F4F5F3;
+$yellow-color: rgb(201, 198, 189);
+
+body {
+  background: url('./assets/img/background.png');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  margin : 0;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+a:link, a:visited {
+  text-decoration: none;
+}
+
+
+.content {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 25px 20px 10px 20px;
+}
+
+
+h1 {
+  font-size: 2em;
+  color: #5BAA73;
+  font-family: 'Leckerli One', cursive;
+}
+
+h2 {
+  color: black;
+  font-size: 1.3em;
+  font-weight: bold;
+  font-family: 'Kalam', cursive;
+}
+
+p {
+  font-size: 1em;
+  color: black;
+  font-family: 'Rubik', sans-serif;
+}
+
+.mat-spinner-color::ng-deep circle{
+  stroke: #90DFAA !important;
+}
+
+button {
+  background-color: gray;
+  cursor: pointer;
+}
+
+.full-width {
+  width: 100%;
+}
+
+button:hover {
+  cursor: pointer;
+}

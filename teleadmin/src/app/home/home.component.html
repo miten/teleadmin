@@ -1,0 +1,57 @@
+<div fxLayout="row" class="content" fxLayoutAlign="center start">
+
+    <div fxLayout="column" fxLayoutAlign="start stretch" style="width: 80%; background-color: white; height:100%;" fxLayoutGap="15px">
+        <mat-card>
+        <div fxLayout="row" fxLayoutAlign="start center" >
+            <button mat-raised-button>Ajouter un patient</button> 
+            </div>
+            <div fxLayout="row" class="full-width" fxLayoutAlign="start center" fxLayoutGap="10px" >
+                <mat-form-field class="full-width">
+    
+                    <input matInput placeholder="Rechercher un patient (par nom, n° sécu)" value="">
+                    
+                </mat-form-field>
+                <button mat-raised-button>Rechercher</button>
+            </div>
+        </mat-card>
+        <mat-card fxLayout="row" fxLayout.lt-md="column">
+            <div fxFlex='70'>
+            <div fxLayout="column" fxLayoutAlign="center start" fxFlex>
+                <mat-form-field><input matInput placeholder="Civilité" [value]="patient.gender" [disabled]="active"/></mat-form-field>
+                <mat-form-field><input matInput placeholder="Nom" [value]="patient.name" [disabled]="active"></mat-form-field>
+                <mat-form-field><input matInput placeholder="Prénom" [value]="patient.surname" [disabled]="active"></mat-form-field>
+                <mat-form-field><textarea matInput placeholder="Adresse" [value]="fullAddress" [disabled]="active"></textarea></mat-form-field>
+                <mat-form-field><input matInput placeholder="Email" [value]="patient.mail" [disabled]="active"></mat-form-field>
+                
+            </div>
+            <div fxLayout="column" fxLayoutAlign="center start" fxFlex>
+                <mat-form-field><input matInput placeholder="Téléphone" [value]="patient.phone" [disabled]="active"></mat-form-field>
+                <mat-form-field><input matInput placeholder="Médecin Traitant" [value]="patient.doctor" [disabled]="active"></mat-form-field>
+                <mat-form-field><input matInput placeholder="Allergies" [value]="patient.allergy" [disabled]="active"></mat-form-field>
+                <mat-form-field><input matInput placeholder="Vaccins" [value]="patient.vaccins" [disabled]="active"></mat-form-field>
+                <mat-form-field><input matInput placeholder="Notes" [value]="patient.notes" [disabled]="active"></mat-form-field>
+            </div>
+        </div>
+            <div fxLayout="column" fxLayoutAlign="space-between stretch" fxFlex >
+                <mat-form-field ><input  matInput placeholder="Numéro de sécu" value="107443092521" disabled/></mat-form-field>
+                <div fxLayout="column" fxLayoutGap="15px">
+                <div fxLayout="row" fxLayoutAlign="center end">
+                    <button fxFill mat-raised-button>Voir historique</button> 
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center end">
+                    <button fxFill mat-raised-button (click)="active=false">Modifier les informations</button> 
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center end">
+                    <button fxFill mat-raised-button>Se connecter au médecin</button> 
+                </div>
+            </div>
+                <div fxLayout="row" fxLayoutAlign="center end" [fxHide]="active" fxLayoutGap="10px">
+                    <button mat-raised-button color="warn" (click)="active=!active" >Annuler</button> 
+                
+                    <button mat-raised-button color="info" (click)="active=!active">Enregistrer</button> 
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>
+
