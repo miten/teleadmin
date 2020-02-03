@@ -2,14 +2,14 @@ import { ForbiddenException, Injectable, forwardRef, Inject } from '@nestjs/comm
 import { JwtService } from '@nestjs/jwt';
 import { EmployeesService } from './../employees/employees.service';
 import { Logger } from '@nestjs/common';
-
+const logger = new Logger();
 
 @Injectable()
 export class AuthService {
   constructor(private readonly userService: EmployeesService, private readonly jwtService: JwtService) {}
 
-  async validateUser(username: string, password: string): Promise<any> {
-    const user = this.userService.getEmployeeInfos(username);
+  async validateUser(code: string, password: string): Promise<any> {
+    const user = await this.userService.getEmployees('code', code);
     if (user && user['password'] === password) {
       return user;
     }
