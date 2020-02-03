@@ -14,6 +14,13 @@ export class AuthController {
         return this.authService.login(user);
     }
 
+    @UseGuards(AuthGuard('jwt'))
+    @Get('me')
+    me(@Body() user: object, @Request() req) {
+        logger.log(req.user);
+        return this.authService.getMe(req.user._id);
+    }
+
 /*        @Post('register')
         async register(@Body() req) {
             const newUser = await this.userService.createUser(req);

@@ -19,6 +19,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
 import { HomeComponent } from './home/home.component';
 import { AjoutPatientComponent } from './ajout-patient/ajout-patient.component';
+import { SearchBarComponent } from './home/search-bar/search-bar.component';
+import { LightProfileComponent } from './patient/light-profile/light-profile.component';
+import { ProfileComponent } from './patient/profile/profile.component';
 
 
 const config: SocketIoConfig = { url: environment.url, options: {}};
@@ -31,7 +34,10 @@ export function tokenGetter() {
     AppComponent,
     LoginComponent,
     HomeComponent,
-    AjoutPatientComponent
+    AjoutPatientComponent,
+    SearchBarComponent,
+    LightProfileComponent,
+    ProfileComponent
     
   ],
   imports: [

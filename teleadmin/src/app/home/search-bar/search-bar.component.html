@@ -1,0 +1,7 @@
+<form fxLayout="row" fxLayoutAlign="start center" class="full-width" fxLayoutGap="10px" fxFill [formGroup]="searchForm" (ngSubmit)="search()" novalidate>
+  <mat-form-field class="full-width">
+    <input matInput formControlName="query" placeholder="Rechercher un patient (par nom, n° sécu)" >
+  </mat-form-field>
+  <button mat-raised-button>Rechercher</button>
+</form>
+

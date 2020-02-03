@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../auth/auth.service';
-import {BehaviorSubject} from 'rxjs';
-import {SearchBarService} from './search-bar/search-bar.service';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../auth/auth.service";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class ProfileComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private searchBarService: SearchBarService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
+
   user: BehaviorSubject<object>;
   loginForm: FormGroup;
   searchForm: FormGroup;
-  profiles: BehaviorSubject<object[]>;
   active = true;
   fullAddress: string;
   patient = {
@@ -50,9 +49,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-
-    this.profiles = this.searchBarService.results;
-
     this.user = this.authService.user;
 
     this.fullAddress= `${this.patient.address} , ${this.patient.zipcode} , ${this.patient.city}`;
@@ -72,5 +68,6 @@ export class HomeComponent implements OnInit {
 
     this.loginForm.disable();
   }
+
 
 }

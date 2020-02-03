@@ -16,7 +16,8 @@ export class PatientService {
     }
 
     async getPatient(type, value): Promise<object> {
-        return patient.find(employee => employee[type] == value);
+        return patient.filter(employee => employee[type] == value);
+
     }
 
     async addPatient(params): Promise<object> {
