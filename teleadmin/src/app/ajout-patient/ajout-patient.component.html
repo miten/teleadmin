@@ -1,0 +1,44 @@
+
+<div fxLayout="row" class="content" fxLayoutAlign="center start">
+    
+    <div fxLayout="column" fxLayoutAlign="center stretch" style="width: 80%; "
+        fxLayoutGap="15px">
+        <div fxLayout="row" fxLayoutAlign="center stretch"><h1>Fiche patient</h1></div>
+        <mat-card fxLayout="row" fxLayout.lt-md="column">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate fxFlex='70' >
+                <div fxLayout="column" fxLayoutAlign="center start" fxFlex>
+                    <mat-form-field>
+                        <mat-label>Civilité</mat-label>
+                        <select matNativeControl required>
+                            <option value="Monsieur">Monsieur</option>
+                            <option value="Madame">Madame</option>
+                          </select>
+                        
+                          
+                    </mat-form-field>
+                    <mat-form-field><input matInput placeholder="Nom" required></mat-form-field>
+                    <mat-form-field><input matInput placeholder="Prénom" required></mat-form-field>
+                    <mat-form-field><input matInput placeholder="Adresse" required></mat-form-field>
+                    <mat-form-field><input matInput placeholder="Email" required></mat-form-field>
+
+                </div>
+                <div fxLayout="column" fxLayoutAlign="center start" fxFlex>
+                    <mat-form-field><input matInput placeholder="Téléphone" required></mat-form-field>
+                    <mat-form-field><input matInput placeholder="Médecin traitant" required></mat-form-field>
+                    <mat-form-field><input matInput placeholder="Allergies"></mat-form-field>
+                    <mat-form-field><input matInput placeholder="Vaccins"></mat-form-field>
+                    <mat-form-field><input matInput placeholder="Notes"></mat-form-field>
+                </div>
+            </form>
+            <div fxLayout="column" fxLayoutAlign="space-between stretch" fxFlex>
+                <mat-form-field><input matInput placeholder="Numéro de sécurité sociale" required/>
+                </mat-form-field>
+                  
+                <div fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="10px">
+                    <button mat-raised-button style="background-color: green; color:white">Ajouter patient</button>
+                    <button mat-raised-button color="warn" routerLink="/home">Annuler</button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>
