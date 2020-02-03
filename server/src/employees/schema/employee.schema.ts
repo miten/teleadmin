@@ -8,6 +8,7 @@ export const MedecinSchema = new mongoose.Schema({
     email: String,
     phone: String,
     birthday: Date,
+    photo: {type: String, default: 'medecin'},
     roles: {type: Number, default: 1},
 });
 
@@ -19,5 +20,6 @@ export const AccSchema = new mongoose.Schema({
     email: String,
     phone: String,
     birthday: Date,
+    photo: {type: String, default: 'acc'},
     roles: {type: Number, default: 2},
 });
