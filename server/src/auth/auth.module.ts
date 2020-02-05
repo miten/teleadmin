@@ -6,10 +6,15 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { JwtStrategy } from './jwt.strategy';
 import { AuthController } from './auth.controller';
-import { EmployeesModule} from '../employees/employees.module'
+import { EmployeesModule} from '../employees/employees.module';
+import {MongooseModule} from '@nestjs/mongoose';
+import {LoginSchema} from './schema/login.schema';
 
 @Module({
   imports: [
+    MongooseModule.forFeature([
+      { name: 'Login', schema: LoginSchema },
+    ]),
     EmployeesModule,
     PassportModule,
     JwtModule.register({

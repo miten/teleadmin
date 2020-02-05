@@ -1,8 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { patient} from './../fakedatas';
+import {Injectable, NotFoundException, Logger} from '@nestjs/common';
 import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
-import { _ } from 'lodash';
+const logger = new Logger();
 
 @Injectable()
 export class PatientService {
@@ -11,18 +10,51 @@ export class PatientService {
 
     constructor(@InjectModel('Patient') private readonly patientModel: Model<any>) {}
 
-    async getPatientById(id: string): Promise<object> {
-        return this.patientModel.findById(id).exec;
+    async getPatient(id: string): Promise<object | NotFoundException> {
+        try {
+            const user = await this.patientModel.findById(id);
+            return user;
+        } catch (e) {
+            return new NotFoundException(e);
+        }
     }
 
-    async getPatient(type, value): Promise<object> {
-        return patient.filter(employee => employee[type] == value);
-
+    async getPatients(type, value): Promise<object | NotFoundException> {
+        try {
+            const user = await this.patientModel.find({secu: value});
+            return user;
+        } catch (e) {
+            return new NotFoundException(e);
+        }
     }
 
-    async addPatient(params): Promise<object> {
-        patient.push(params);
-        return _.last(patient);
+    async addPatient(params): Promise<any> {
+        try {
+            const user = await this.patientModel.create(params);
+            return user;
+        } catch (e) {
+            return new NotFoundException(e);
+        }
+    }
+
+    async modifyPatient(datas: object | any): Promise<any> {
+        try {
+            const user = await this.patientModel.findById(datas.id);
+            await user.updateOne(user);
+            await user.save();
+            return await this.patientModel.findById(user._id);
+        } catch (e) {
+            return new NotFoundException(e);
+        }
+    }
+
+    async deletePatient(datas: object | any): Promise<any> {
+        try {
+            const user = await this.patientModel.findById(datas.id);
+            await user.remove();
+        } catch (e) {
+            return new NotFoundException(e);
+        }
     }
 
 }

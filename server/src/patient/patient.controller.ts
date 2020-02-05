@@ -1,4 +1,4 @@
-import {Controller, Get, Param, Logger, Post, Body} from '@nestjs/common';
+import {Controller, Get, Param, Logger, Post, Body, Patch, Delete} from '@nestjs/common';
 import { PatientService } from './patient.service';
 
 const logger = new Logger();
@@ -8,21 +8,32 @@ export class PatientController {
     constructor(private readonly patientService: PatientService) {}
 
     @Get(':id')
-    getPatientById(@Param('id') id) {
-        return this.patientService.getPatientById(id);
+    getPatient(@Param('id') id) {
+        return this.patientService.getPatient(id);
     }
 
 
     @Get(':type/:value')
-    getEmployees(@Param('type') type, @Param('value') value) {
-        return this.patientService.getPatient(type, value);
+    getPatients(@Param('type') type, @Param('value') value) {
+        return this.patientService.getPatients(type, value);
     }
 
 
     @Post()
     addPatient(@Body() datas: any): object {
-        logger.log(this.patientService.addPatient(datas));
         return this.patientService.addPatient(datas);
+    }
+
+
+    @Patch()
+    modifyPatient(@Body() datas: any): object {
+        return this.patientService.modifyPatient(datas);
+    }
+
+
+    @Delete()
+    deletePatient(@Body() datas: any): object {
+        return this.patientService.deletePatient(datas);
     }
 
 }

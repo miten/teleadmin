@@ -15,7 +15,6 @@ body {
   margin : 0;
   height: 100vh;
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 a {
@@ -27,9 +26,8 @@ a:link, a:visited {
 
 
 .content {
-  height: 80%;
+  height: 100%;
   overflow-x: hidden;
-  overflow-y: hidden;
   padding: 25px 20px 10px 20px;
 }
 
@@ -41,10 +39,11 @@ h1 {
 }
 
 h2 {
+
   color: black;
   font-size: 1.3em;
   font-weight: bold;
-  font-family: 'Kalam', cursive;
+  font-family: 'Roboto', sans-serif;
 }
 
 p {

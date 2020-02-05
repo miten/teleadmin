@@ -1,31 +1,30 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { environment } from '../environments/environment';
-import { Router, NavigationStart } from '@angular/router';
+import { Router } from '@angular/router';
+import {AuthService} from './auth/auth.service';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  $user: BehaviorSubject<any>;
   logo =  environment.logo;
   logout = environment.logout;
-  title = 'teleadmin';
 
-  showHead: boolean = false;
+  constructor(private router: Router, private authService: AuthService) {}
 
-  constructor(private router: Router) {
-    // on route change to '/login', set the variable showHead to false
-      router.events.forEach((event) => {
-        if (event instanceof NavigationStart) {
-          if (event['url'] == '/login') {
-            this.showHead = false;
-          } else {
-            // console.log("NU")
-            this.showHead = true;
-          }
-        }
-      });
-    }
+
+
+  signOut() {
+    this.authService.logout();
+  }
+
+  ngOnInit(): void {
+    this.$user = this.authService.user;
+  }
 
 }

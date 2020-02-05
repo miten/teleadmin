@@ -8,19 +8,23 @@ import {MongooseModule} from '@nestjs/mongoose';
 import { SessionController } from './session/session.controller';
 import { SessionService } from './session/session.service';
 import { SessionModule } from './session/session.module';
+import { LivestreamGateway } from './livestream/livestream.gateway';
+import { LivestreamModule } from './livestream/livestream.module';
 
 @Module({
   imports: [
       AuthModule,
       EmployeesModule,
       PatientModule,
-      MongooseModule.forRoot('mongodb://localhost/nest'),
+      MongooseModule.forRoot('mongodb://localhost/teleadmin'),
       SessionModule,
+      LivestreamModule,
   ],
   controllers: [AppController, SessionController],
   providers: [
       AppService,
       SessionService,
+      LivestreamGateway,
   ],
   exports: [
   ],

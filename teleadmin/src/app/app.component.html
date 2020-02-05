@@ -1,9 +1,11 @@
-
 <header>
-    <div fxLayout="row" fxLayoutAlign="space-between start" >
-        <img class="logo" [src]="logo">
-        <img class="logout" [src]="logout" routerLink="/login">
-     
+    <div *ngIf="$user | async" fxLayout="row" fxLayoutAlign="space-between start">
+        <img class="logo" [src]="logo" routerLink="/home">
+        <img class="logout" [src]="logout" (click)="signOut()">
+    </div>
+    <div style="padding-left: 100px" *ngIf="($user | async) as user" fxLayout="row" fxFill fxLayoutAlign="start center">
+      <img src="/assets/img/{{user.photo}}.png" style="height: 80px">
+      <h2>{{user.status === 1 ? 'Medecin ' : 'Accompagnateur '}} {{user.name}}</h2>
     </div>
 </header>
 

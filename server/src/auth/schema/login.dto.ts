@@ -1,15 +1,12 @@
-export class EmployeeDto {
+export class LoginDto {
     constructor(object: any) {
         this.email = object.email;
         this.name = object.name;
-        this.status = object.status;
         this.surname = object.surname;
         this.birthdaydate = object.birthdaydate;
         this.phone = object.phone;
         this.profilepicture = object.profilepicture;
-
-    }
-    readonly status: number;
+    };
     readonly email: string;
     readonly name: string;
     readonly surname: string;

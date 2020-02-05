@@ -1,4 +1,4 @@
-import { Controller, Get, Request, Post, Param, UseGuards, Logger, Res, Render, Body } from '@nestjs/common';
+import { Controller, Get, Request, Post, UseGuards, Logger, Body } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 const logger = new Logger();
@@ -21,12 +21,11 @@ export class AuthController {
         return this.authService.getMe(req.user._id);
     }
 
-/*        @Post('register')
-        async register(@Body() req) {
-            const newUser = await this.userService.createUser(req);
-            return this.authService.login(newUser);
-        }
-*/
+    @Post('register')
+    registerEmployee(@Body() datas) {
+       return this.authService.register(datas);
+    }
+
 
     @UseGuards(AuthGuard('jwt'))
     @Get('me')

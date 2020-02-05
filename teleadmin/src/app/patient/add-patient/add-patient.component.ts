@@ -1,24 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-
-
 @Component({
-  selector: 'app-ajout-patient',
-  templateUrl: './ajout-patient.component.html',
-  styleUrls: ['./ajout-patient.component.scss']
+  selector: 'app-add-patient',
+  templateUrl: './add-patient.component.html',
+  styleUrls: ['./add-patient.component.scss']
 })
-export class AjoutPatientComponent implements OnInit {
+export class AddPatientComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {}
 
   loginForm: FormGroup;
-  active = true;
   fullAddress: string;
   patient = {
     gender: "m",
     name: "neymar",
-    surname: "jean", 
+    surname: "jean",
     address: "35 rue du général leclerc",
     city: "issy",
     zipcode: "92130",
@@ -48,6 +45,7 @@ export class AjoutPatientComponent implements OnInit {
       vaccins: [this.patient.vaccins, [Validators.minLength(3)]],
       notes: [this.patient.notes, [Validators.minLength(3)]],
       secu: [this.patient.secu, [Validators.required, Validators.max(15)]]
-  });
+    });
   }
+
 }

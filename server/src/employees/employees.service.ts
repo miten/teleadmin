@@ -1,5 +1,4 @@
-import {Injectable, Logger} from '@nestjs/common';
-import {employees} from './../fakedatas';
+import {Injectable, Logger, NotFoundException} from '@nestjs/common';
 import {Model} from 'mongoose';
 import {InjectModel} from '@nestjs/mongoose';
 import {EmployeeDto} from './schema/employee.dto';
@@ -8,28 +7,67 @@ const logger = new Logger();
 @Injectable()
 export class EmployeesService {
 
-    constructor(@InjectModel('Medecin') private readonly medecinModel: Model<any>) {}
+    constructor(@InjectModel('Employee') private readonly employeeModel: Model<any>) {}
 
-    async addEmployee(datas: any): Promise<EmployeeDto> {
-        const medecin = new this.medecinModel(datas);
+    async addMedecin(datas: any): Promise<EmployeeDto> {
+        datas.status = 1;
+        datas.photo = 'medecin';
+        const medecin = new this.employeeModel(datas);
         return medecin.save();
     }
 
+    async addAcc(datas: any): Promise<EmployeeDto> {
+        datas.status = 2;
+        datas.photo = 'acc';
+        const acc = new this.employeeModel(datas);
+        return acc.save();
+    }
+
+
+    async getEmployee(id: string): Promise<EmployeeDto[] | NotFoundException | any> {
+        try {
+            const employee = await this.employeeModel.findById(id);
+            return employee;
+        } catch (e) {
+            return new NotFoundException(e);
+        }
+    }
+
+
+    async modifyEmployee(id: string, data: object): Promise<EmployeeDto[] | NotFoundException | any> {
+        try {
+            const user = await this.employeeModel.findById(id);
+            await user.updateOne(data);
+            await user.save();
+            return await this.employeeModel.findById(id);
+        } catch (e) {
+            return new NotFoundException(e);
+        }
+    }
+
+
+
+
+
+
     async getEmployees(type: string, value: string): Promise<EmployeeDto[] | object> {
-      /*  switch (type) {
-            case 'name':
-                return this.medecinModel.find({name: value}).exec();
-            case 'secu':
-                return this.medecinModel.find({secu: value}).exec();
-            default:
-                return this.medecinModel.find().exec();
-        }*/
-
-      return employees.find(employee => employee[type] === Number(value));
+        try {
+            const employees = await this.employeeModel.find({type: value});
+            logger.log(employees);
+            return employees;
+        } catch (e) {
+            return new NotFoundException(e);
+        }
     }
 
-    async getEmployeeById(id: string): Promise<EmployeeDto[] | object> {
-        // return this.medecinModel.findById(id).exec();
-        return employees.find(employee => employee._id === id);
+    // Specific function for auth
+
+    async getEmployeeByCps(codeCps: string): Promise<EmployeeDto[] | NotFoundException | any> {
+        try {
+            return await this.employeeModel.findOne({cps: codeCps});
+        } catch (e) {
+            return new NotFoundException(e);
+        }
     }
+
 }

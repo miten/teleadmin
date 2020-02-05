@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  logout: '/assets/img/logout.png',
-  logo: '/assets/img/logopromotal.png',
+  logout: './assets/img/logout.png',
+  logo: './assets/img/logopromotal.png',
   api_url: 'http://localhost:3000/api',
   url: 'http://localhost:3000',
 };

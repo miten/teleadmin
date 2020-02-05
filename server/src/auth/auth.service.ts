@@ -1,34 +1,61 @@
-import { ForbiddenException, Injectable, forwardRef, Inject } from '@nestjs/common';
+import {ForbiddenException, Injectable, NotFoundException} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { EmployeesService } from './../employees/employees.service';
 import { Logger } from '@nestjs/common';
 import {employees} from '../fakedatas';
+import {InjectModel} from '@nestjs/mongoose';
+import {Model} from 'mongoose';
 const logger = new Logger();
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly employeesService: EmployeesService, private readonly jwtService: JwtService) {}
+  constructor(private readonly employeesService: EmployeesService, private readonly jwtService: JwtService,
+              @InjectModel('Login') private readonly loginModel: Model<any>) {}
+
 
   async validateUser(code: string, password: string): Promise<any> {
-    const user = await this.employeesService.getEmployees('code', code);
-    if (user && user['password'] === password) {
-      return user;
+    try {
+      const user = await this.loginModel.findOne({cps: code});
+      if (user && user.password === password) {
+        return user;
+      }
+    } catch (e) {
+      return new NotFoundException(e);
     }
-    return null;
   }
 
   async getMe(id: string): Promise<any> {
-    return employees.find(employee => employee._id === id);
+    return await this.employeesService.getEmployee(id);
   }
 
   async login(userx: any) {
-    const user = await this.validateUser(userx.username, userx.password);
-    if (user) {
-      const payload = { username: user.name, _id: user._id, status: user.status };
-      return {
-        access_token: this.jwtService.sign(payload),
-      };
+    try {
+      const user = await this.validateUser(userx.username, userx.password);
+      if (user) {
+        const userData = await this.employeesService.getEmployee(user._id);
+        if (userData) {
+          const payload = {_id: user._id, status: userData.status};
+          return {access_token: this.jwtService.sign(payload)};
+        }
+      }
+    } catch (e) {
+      return new NotFoundException(e);
     }
-    return new ForbiddenException('Cannot generate token');
   }
+
+  async register(datas: any) {
+    try {
+      const userExist = await this.employeesService.getEmployeeByCps(datas.cps);
+      if (!userExist) {
+        const newUser = await this.loginModel.create(datas);
+        const newUserData = await this.employeesService.addMedecin({cps: newUser.cps, _id: newUser._id});
+        return newUserData;
+      } else {
+        return new ForbiddenException();
+      }
+    } catch (e) {
+      return new NotFoundException(e);
+    }
+  }
+
 }

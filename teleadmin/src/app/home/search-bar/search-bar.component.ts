@@ -15,8 +15,13 @@ export class SearchBarComponent implements OnInit {
 
 
   search() {
-    this.searchBarService.getQuery('secu', this.searchForm.value.query);
+    this.searchBarService.getPatients('secu', this.searchForm.value.query);
   }
+
+  search2() {
+    this.searchBarService.getMedecins('name', this.searchForm.value.query);
+  }
+
 
   ngOnInit() {
 

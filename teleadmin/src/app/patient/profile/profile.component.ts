@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../auth/auth.service";
-import {BehaviorSubject} from "rxjs";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {PatientService} from '../patient.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -10,28 +10,14 @@ import {BehaviorSubject} from "rxjs";
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private patientService: PatientService) {}
 
-  user: BehaviorSubject<object>;
+  patient: any;
   loginForm: FormGroup;
   searchForm: FormGroup;
   active = true;
   fullAddress: string;
-  patient = {
-    gender: "m",
-    name: "neymar",
-    surname: "jean",
-    address: "35 rue du général leclerc",
-    city: "issy",
-    zipcode: "92130",
-    email: "jean.cule@gmail.com",
-    phone: "0612345678",
-    doctor: "dr Ibert",
-    allergy: "nan",
-    vaccins: "nan",
-    notes: "ras",
-    secu: "1234564789"
-  };
+
 
   doit() {
     this.loginForm.disable();
@@ -47,10 +33,7 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-
-    this.user = this.authService.user;
-
+  loadForm() {
     this.fullAddress= `${this.patient.address} , ${this.patient.zipcode} , ${this.patient.city}`;
     this.loginForm = this.fb.group({
       gender: [this.patient.gender, [Validators.required, Validators.minLength(3)]],
@@ -63,10 +46,16 @@ export class ProfileComponent implements OnInit {
       allergy: [this.patient.allergy, [Validators.required, Validators.minLength(3)]],
       vaccins: [this.patient.vaccins, [Validators.required, Validators.minLength(3)]],
       notes: [this.patient.notes, [Validators.required, Validators.minLength(3)]]
-
     });
-
     this.loginForm.disable();
+  }
+
+
+  ngOnInit() {
+    this.patientService.getPatient(this.route.snapshot.paramMap.get('id'))
+      .then(datas => this.patient = datas)
+      .then(_ => this.loadForm())
+      .catch(err => console.log(err));
   }
 
 
