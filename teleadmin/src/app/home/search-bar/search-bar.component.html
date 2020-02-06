@@ -1,7 +1,12 @@
+<div fxLayout="row" fxLayoutGap="2px">
+  <div (click)="selected(0)" [style.background-color]="employee ? '#1F323F' : '#8E8E8E'" fxFlex class="selector" fxLayout="row" fxLayoutAlign="center center"><p>Employés</p></div>
+  <div (click)="selected(1)" [style.background-color]="patient ? '#1F323F' : '#8E8E8E'" fxFlex class="selector" fxLayout="row" fxLayoutAlign="center center"><p>Patients</p></div>
+</div>
 <form fxLayout="row" fxLayoutAlign="start center" class="full-width" fxLayoutGap="10px" fxFill [formGroup]="searchForm" (ngSubmit)="search()" novalidate>
   <mat-form-field class="full-width">
-    <input matInput formControlName="query" placeholder="Rechercher un patient (par nom, n° sécu)" >
+    <input matInput formControlName="query"
+           [placeholder]="patient ? 'Recherche patients (par nom, n° sécu)' :  'Recherche employés (par nom, n° cps)'">
   </mat-form-field>
-  <button mat-raised-button>Rechercher</button>
+  <button type="submit" mat-raised-button>Rechercher</button>
 </form>
 

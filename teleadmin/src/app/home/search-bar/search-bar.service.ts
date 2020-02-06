@@ -1,31 +1,24 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {environment} from '../../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {EmployeeService} from '../../employee/employee.service';
+import {PatientService} from '../../patient/patient.service';
 @Injectable({
   providedIn: 'root'
 })
 export class SearchBarService {
 
-  api = `${environment.api_url}/patient`;
-
-  apex = `${environment.api_url}/employee`;
-
-
   results = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private employeeService: EmployeeService, private patientService: PatientService) {}
 
-
-  getPatients(typex: string, value: string) {
-    return this.http.get(`${this.api}/${typex}/${value}`).toPromise()
+  getEmployees(typex: string, value: string) {
+    this.employeeService.getEmployees(typex, value)
       .then(res => this.results.next(res))
       .catch(err => console.log(err));
   }
 
-
-  getMedecins(typex: string, value: string) {
-    return this.http.get(`${this.apex}/${typex}/${value}`).toPromise()
+  getPatients(typex: string, value: string) {
+    this.patientService.getPatients(typex, value)
       .then(res => this.results.next(res))
       .catch(err => console.log(err));
   }

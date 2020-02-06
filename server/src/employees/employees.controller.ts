@@ -34,8 +34,7 @@ export class EmployeesController {
         return this.Employeeservice.modifyEmployee('5e397872e408f156acd3d474', datas);
     }
 
-    @UseGuards(AuthGuard('jwt'), RolesGuard)
-    @Roles(1, 2)
+
     @Get(':type/:value')
     getEmployees(@Param('type') type, @Param('value') value) {
         return this.Employeeservice.getEmployees(type, value);

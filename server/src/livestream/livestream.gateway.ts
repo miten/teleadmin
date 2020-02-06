@@ -1,10 +1,26 @@
-import {ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway} from '@nestjs/websockets';
+import {ConnectedSocket, MessageBody, SubscribeMessage, WebSocketGateway, WebSocketServer} from '@nestjs/websockets';
 import {Socket} from 'socket.io';
 import { Logger } from '@nestjs/common';
 const logger = new Logger();
 
 @WebSocketGateway()
 export class LivestreamGateway {
+
+
+    @WebSocketServer() server;
+    users: number = 0;
+
+    async handleConnection() {
+
+        // A client has connected
+        this.users++;
+
+        // Notify connected clients of current users
+        this.server.emit('users', this.users);
+
+    }
+
+
   @SubscribeMessage('message')
   handleMessage(client: any, payload: any): string {
     return 'Hello world!';
@@ -21,9 +37,8 @@ export class LivestreamGateway {
   async handleEvent(
       @MessageBody() message: any,
       @ConnectedSocket() client: Socket): Promise<any> {
-      logger.log(message);
-      return await  client.broadcast.in(message._id).emit('conversation private post', {
-      message: message,
+      logger.log(message._id);
+      return client.broadcast.in(message._id).emit('private', {
       chatroom: message._id,
     });
   }

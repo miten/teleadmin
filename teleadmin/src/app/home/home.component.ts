@@ -17,17 +17,17 @@ export class HomeComponent implements OnInit {
               private searchBarService: SearchBarService, private liveStream: LivestreamService,
               private snackBar: MatSnackBar) { }
   user: BehaviorSubject<any>;
-  profiles: BehaviorSubject<object[]>;
+  results: BehaviorSubject<object[]>;
 
   ngOnInit() {
-    this.profiles = this.searchBarService.results;
+    this.results = this.searchBarService.results;
     this.user = this.authService.user;
     this.authService.user.subscribe(user => {
       if (user.status === 1) {
-        this.liveStream.connectChatroom(user._id);
+        this.liveStream.connectRoom(user._id);
       }
     });
-    this.liveStream.receiveChat().subscribe(_ => {
+    this.liveStream.getCall().subscribe(_ => {
       this.snackBar.open('APPEL EN COURS');
     });
   }

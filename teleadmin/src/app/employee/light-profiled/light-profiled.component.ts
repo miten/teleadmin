@@ -14,7 +14,7 @@ export class LightProfiledComponent implements OnInit {
   constructor(private liveStream: LivestreamService) { }
 
   connect() {
-    this.liveStream.addMessage('jesuisla', this.employee._id);
+    this.liveStream.addMessage({_id: 'jesuisla'}, this.employee._id);
   }
 
   ngOnInit() {

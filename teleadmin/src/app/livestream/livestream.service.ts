@@ -26,11 +26,11 @@ export class LivestreamService {
     return this.socket.fromEvent('users');
   }
 
-  connectChatroom(chatroomId: string): Observable<any> {
+  connectRoom(chatroomId: string): Observable<any> {
     return this.socket.emit('joinRoom', chatroomId);
   }
 
-  getMessChatroom(): Observable<number> {
-    return this.socket.fromEvent('conversation private post');
+  getCall(): Observable<number> {
+    return this.socket.fromEvent('private');
   }
 }

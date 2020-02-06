@@ -12,14 +12,26 @@ export class SearchBarComponent implements OnInit {
   constructor(private fb: FormBuilder, private searchBarService: SearchBarService) { }
 
   searchForm: FormGroup;
-
+  patient = true;
+  employee = false;
 
   search() {
-    this.searchBarService.getPatients('secu', this.searchForm.value.query);
+    if (this.patient === true) {
+      this.searchBarService.getPatients('secu', this.searchForm.value.query);
+    } else {
+      this.searchBarService.getEmployees('cps', this.searchForm.value.query);
+    }
+
   }
 
-  search2() {
-    this.searchBarService.getMedecins('name', this.searchForm.value.query);
+  selected(x) {
+    if (x === 1) {
+      this.patient = true;
+      this.employee = false;
+    } else {
+      this.patient = false;
+      this.employee = true;
+    }
   }
 
 

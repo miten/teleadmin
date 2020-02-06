@@ -34,27 +34,23 @@ export class EmployeesService {
     }
 
 
-    async modifyEmployee(id: string, data: object): Promise<EmployeeDto[] | NotFoundException | any> {
+
+    async getEmployees(type: string, value: string): Promise<object | NotFoundException> {
         try {
-            const user = await this.employeeModel.findById(id);
-            await user.updateOne(data);
-            await user.save();
-            return await this.employeeModel.findById(id);
+            const user = await this.employeeModel.where(type, value);
+            return user;
         } catch (e) {
             return new NotFoundException(e);
         }
     }
 
 
-
-
-
-
-    async getEmployees(type: string, value: string): Promise<EmployeeDto[] | object> {
+    async modifyEmployee(id: string, data: object): Promise<EmployeeDto[] | NotFoundException | any> {
         try {
-            const employees = await this.employeeModel.find({type: value});
-            logger.log(employees);
-            return employees;
+            const user = await this.employeeModel.findById(id);
+            await user.updateOne(data);
+            await user.save();
+            return await this.employeeModel.findById(id);
         } catch (e) {
             return new NotFoundException(e);
         }

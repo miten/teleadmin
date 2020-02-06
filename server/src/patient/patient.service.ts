@@ -19,9 +19,9 @@ export class PatientService {
         }
     }
 
-    async getPatients(type, value): Promise<object | NotFoundException> {
+    async getPatients(type: string, value: string): Promise<object | NotFoundException> {
         try {
-            const user = await this.patientModel.find({secu: value});
+            const user = await this.patientModel.where(type, value);
             return user;
         } catch (e) {
             return new NotFoundException(e);
@@ -39,8 +39,10 @@ export class PatientService {
 
     async modifyPatient(datas: object | any): Promise<any> {
         try {
-            const user = await this.patientModel.findById(datas.id);
-            await user.updateOne(user);
+            logger.log(datas);
+            const user = await this.patientModel.findById(datas._id);
+            logger.log(user);
+            await user.updateOne(datas);
             await user.save();
             return await this.patientModel.findById(user._id);
         } catch (e) {

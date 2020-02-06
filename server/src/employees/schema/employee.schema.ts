@@ -6,7 +6,7 @@ export const EmployeeSchema = new Schema({
     surname: String,
     gender: String,
     city: String,
-    cps: Number,
+    cps: String,
     email: String,
     phone: String,
     birthday: Date,

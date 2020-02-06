@@ -9,7 +9,6 @@ import {HttpClient} from '@angular/common/http';
 export class PatientService {
 
   api = `${environment.api_url}/patient`;
-  results = new BehaviorSubject(null);
 
   constructor(private http: HttpClient) {}
 
@@ -17,4 +16,18 @@ export class PatientService {
   getPatient(id: string) {
     return this.http.get(`${this.api}/${id}`).toPromise();
   }
+
+  getPatients(typex: string, value: string) {
+    return this.http.get(`${this.api}/${typex}/${value}`).toPromise()
+      .then(res => res)
+      .catch(err => console.log(err));
+  }
+
+  modifyPatient(datas: object) {
+    return this.http.patch(`${this.api}`, datas).toPromise()
+      .then(res => res)
+      .catch(err => console.log(err));
+  }
+
+
 }
