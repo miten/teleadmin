@@ -11,7 +11,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
 import {environment} from '../environments/environment';
 import { LoginComponent } from './auth/login/login.component';
-
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
@@ -24,6 +25,10 @@ import { ProfileComponent } from './patient/profile/profile.component';
 import { AddPatientComponent } from './patient/add-patient/add-patient.component';
 import { LightProfiledComponent } from './employee/light-profiled/light-profiled.component';
 import { LivestreamComponent } from './livestream/livestream.component';
+import { AdminComponent } from './admin/admin.component';
+import { NotificationComponent } from './livestream/notification/notification.component';
+import { MatNavList, MatListModule } from '@angular/material';
+
 
 
 const config: SocketIoConfig = { url: environment.url, options: {}};
@@ -42,7 +47,10 @@ export function tokenGetter() {
     ProfileComponent,
     AddPatientComponent,
     LightProfiledComponent,
-    LivestreamComponent
+    LivestreamComponent,
+    AdminComponent,
+    NotificationComponent
+    
 
   ],
   imports: [
@@ -61,6 +69,9 @@ export function tokenGetter() {
     MatIconModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatCheckboxModule,
+    MatBottomSheetModule,
+    MatListModule,
 
     JwtModule.forRoot({
       config: {
@@ -71,6 +82,10 @@ export function tokenGetter() {
     })
 
   ],
+  entryComponents: [
+    NotificationComponent
+  ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })
