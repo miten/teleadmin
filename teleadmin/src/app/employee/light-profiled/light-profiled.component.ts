@@ -17,7 +17,7 @@ export class LightProfiledComponent implements OnInit {
   constructor(private liveStream: LivestreamService, private authService: AuthService) { }
 
   connect() {
-    this.liveStream.addMessage({id: this.$user.getValue()._id}, this.employee._id);
+    this.liveStream.call({id: this.$user.getValue()._id, contactId: this.employee._id});
   }
 
   ngOnInit() {

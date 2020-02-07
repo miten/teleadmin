@@ -19,12 +19,6 @@ export class LivestreamGateway {
 
     }
 
-
-  @SubscribeMessage('message')
-  handleMessage(client: any, payload: any): string {
-    return 'Hello world!';
-  }
-
   @SubscribeMessage('joinRoom')
   handleRoomJoin(client: Socket, room: string ) {
     logger.log('connected to' + room);
@@ -32,11 +26,11 @@ export class LivestreamGateway {
     client.emit('joinedRoom', room);
   }
 
-  @SubscribeMessage('chat')
+  @SubscribeMessage('call')
   async handleEvent(
       @MessageBody() message: any,
       @ConnectedSocket() client: Socket): Promise<any> {
-      return client.broadcast.in(message._id).emit('private', {
+      return client.broadcast.in(message.contactId).emit('privateCall', {
       id: message.id,
     });
   }

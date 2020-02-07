@@ -13,17 +13,8 @@ export class LivestreamService {
   constructor(private http: HttpClient, private socket: Socket) {}
 
 
-  addMessage(message: any, chatroomId: string): Observable<any> {
-    message._id = chatroomId;
-    return this.socket.emit('chat', message);
-  }
-
-  receiveChat(): Observable<any> {
-    return this.socket.fromEvent('chat');
-  }
-
-  getUsers(): Observable<number> {
-    return this.socket.fromEvent('users');
+  call(message: object): Observable<any> {
+    return this.socket.emit('call', message);
   }
 
   connectRoom(chatroomId: string): Observable<any> {
@@ -31,6 +22,6 @@ export class LivestreamService {
   }
 
   getCall(): Observable<number> {
-    return this.socket.fromEvent('private');
+    return this.socket.fromEvent('privateCall');
   }
 }
