@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
-import { environment } from '../../../environments/environment';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import {EmployeeService} from '../../employee/employee.service';
 
 
 @Component({
@@ -8,13 +8,18 @@ import { environment } from '../../../environments/environment';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss']
 })
-export class NotificationComponent {
+export class NotificationComponent implements OnInit {
 
-  constructor(private _bottomSheetRef: MatBottomSheetRef<NotificationComponent>) {}
+  constructor(private employeeService: EmployeeService, private bottomSheetRef: MatBottomSheetRef<NotificationComponent>,
+              @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {}
 
+  employee: any;
   openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
+    this.bottomSheetRef.dismiss();
     event.preventDefault();
+  }
 
-}
+  ngOnInit(): void {
+    this.employee = this.employeeService.getEmployee(this.data.id);
+  }
 }

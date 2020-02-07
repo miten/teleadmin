@@ -35,9 +35,9 @@ export class EmployeesController {
     }
 
 
-    @Get(':type/:value')
-    getEmployees(@Param('type') type, @Param('value') value) {
-        return this.Employeeservice.getEmployees(type, value);
+    @Get('all/:value')
+    getEmployees(@Param('value') value) {
+        return this.Employeeservice.getEmployees(value);
     }
 
 }

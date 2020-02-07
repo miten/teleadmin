@@ -17,11 +17,10 @@ export class SearchBarComponent implements OnInit {
 
   search() {
     if (this.patient === true) {
-      this.searchBarService.getPatients('secu', this.searchForm.value.query);
+      this.searchBarService.getPatients(this.searchForm.value.query);
     } else {
-      this.searchBarService.getEmployees('cps', this.searchForm.value.query);
+      this.searchBarService.getEmployees(this.searchForm.value.query);
     }
-
   }
 
   selected(x) {

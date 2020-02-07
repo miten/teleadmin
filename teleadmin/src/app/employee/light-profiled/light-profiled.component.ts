@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {LivestreamService} from "../../livestream/livestream.service";
+import {LivestreamService} from '../../livestream/livestream.service';
+import {BehaviorSubject} from 'rxjs';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-light-profiled',
@@ -9,15 +11,17 @@ import {LivestreamService} from "../../livestream/livestream.service";
 export class LightProfiledComponent implements OnInit {
 
   @Input() employee;
+  $user: BehaviorSubject<any>;
 
 
-  constructor(private liveStream: LivestreamService) { }
+  constructor(private liveStream: LivestreamService, private authService: AuthService) { }
 
   connect() {
-    this.liveStream.addMessage({_id: 'jesuisla'}, this.employee._id);
+    this.liveStream.addMessage({id: this.$user.getValue()._id}, this.employee._id);
   }
 
   ngOnInit() {
+    this.$user = this.authService.user;
   }
 
 }

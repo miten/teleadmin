@@ -14,6 +14,12 @@ export class AuthController {
         return this.authService.login(user);
     }
 
+    @Get('test')
+    test(@Body() user: object, @Request() req) {
+        return 'test';
+    }
+
+
     @UseGuards(AuthGuard('jwt'))
     @Get('me')
     me(@Body() user: object, @Request() req) {

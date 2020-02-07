@@ -8,7 +8,6 @@
       <h2>{{user.status === 1 ? 'Medecin ' : 'Accompagnateur '}} {{user.name}}</h2>
     </div>
 </header>
-<button mat-raised-button style="visibility: hidden;" (click)="openBottomSheet()" *ngIf="($user| async) as user" >APPELLLL</button>
-<router-outlet></router-outlet>
+<router-outlet *ngIf="($user | async) || router.url === '/login'"></router-outlet>
 
 <footer fxLayout="column" fxLayoutAlign="center end"></footer>

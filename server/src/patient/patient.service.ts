@@ -1,6 +1,7 @@
 import {Injectable, NotFoundException, Logger} from '@nestjs/common';
 import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
+import {isNumber} from "../functions";
 const logger = new Logger();
 
 @Injectable()
@@ -12,17 +13,19 @@ export class PatientService {
 
     async getPatient(id: string): Promise<object | NotFoundException> {
         try {
-            const user = await this.patientModel.findById(id);
-            return user;
+            return await this.patientModel.findById(id);
         } catch (e) {
             return new NotFoundException(e);
         }
     }
 
-    async getPatients(type: string, value: string): Promise<object | NotFoundException> {
+    async getPatients(value: string): Promise<object | NotFoundException> {
         try {
-            const user = await this.patientModel.where(type, value);
-            return user;
+            if (isNumber(value)) {
+                return await this.patientModel.find({secu: value});
+            } else {
+                return await this.patientModel.find({name: value});
+            }
         } catch (e) {
             return new NotFoundException(e);
         }
@@ -30,8 +33,7 @@ export class PatientService {
 
     async addPatient(params): Promise<any> {
         try {
-            const user = await this.patientModel.create(params);
-            return user;
+            return await this.patientModel.create(params);
         } catch (e) {
             return new NotFoundException(e);
         }

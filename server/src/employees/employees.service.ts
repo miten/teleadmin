@@ -3,6 +3,7 @@ import {Model} from 'mongoose';
 import {InjectModel} from '@nestjs/mongoose';
 import {EmployeeDto} from './schema/employee.dto';
 const logger = new Logger();
+import {isNumber} from '../functions';
 
 @Injectable()
 export class EmployeesService {
@@ -26,8 +27,7 @@ export class EmployeesService {
 
     async getEmployee(id: string): Promise<EmployeeDto[] | NotFoundException | any> {
         try {
-            const employee = await this.employeeModel.findById(id);
-            return employee;
+            return await this.employeeModel.findById(id);
         } catch (e) {
             return new NotFoundException(e);
         }
@@ -35,15 +35,19 @@ export class EmployeesService {
 
 
 
-    async getEmployees(type: string, value: string): Promise<object | NotFoundException> {
-        try {
-            const user = await this.employeeModel.where(type, value);
-            return user;
-        } catch (e) {
-            return new NotFoundException(e);
-        }
-    }
 
+
+    async getEmployees(value: string): Promise<object | NotFoundException> {
+            try {
+                if (isNumber(value)) {
+                    return await this.employeeModel.find({cps: value});
+                } else {
+                    return await this.employeeModel.find({name: value});
+                }
+            } catch (e) {
+                return new NotFoundException(e);
+            }
+    }
 
     async modifyEmployee(id: string, data: object): Promise<EmployeeDto[] | NotFoundException | any> {
         try {

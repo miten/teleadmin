@@ -11,14 +11,14 @@ export class SearchBarService {
 
   constructor(private employeeService: EmployeeService, private patientService: PatientService) {}
 
-  getEmployees(typex: string, value: string) {
-    this.employeeService.getEmployees(typex, value)
+  getEmployees(value: string) {
+    this.employeeService.getEmployees(value)
       .then(res => this.results.next(res))
       .catch(err => console.log(err));
   }
 
-  getPatients(typex: string, value: string) {
-    this.patientService.getPatients(typex, value)
+  getPatients(value: string) {
+    this.patientService.getPatients(value)
       .then(res => this.results.next(res))
       .catch(err => console.log(err));
   }

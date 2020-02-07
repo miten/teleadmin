@@ -17,8 +17,8 @@ export class PatientService {
     return this.http.get(`${this.api}/${id}`).toPromise();
   }
 
-  getPatients(typex: string, value: string) {
-    return this.http.get(`${this.api}/${typex}/${value}`).toPromise()
+  getPatients(value: string) {
+    return this.http.get(`${this.api}/all/${value}`).toPromise()
       .then(res => res)
       .catch(err => console.log(err));
   }

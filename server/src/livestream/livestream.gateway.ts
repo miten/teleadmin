@@ -6,7 +6,6 @@ const logger = new Logger();
 @WebSocketGateway()
 export class LivestreamGateway {
 
-
     @WebSocketServer() server;
     users: number = 0;
 
@@ -37,9 +36,8 @@ export class LivestreamGateway {
   async handleEvent(
       @MessageBody() message: any,
       @ConnectedSocket() client: Socket): Promise<any> {
-      logger.log(message._id);
       return client.broadcast.in(message._id).emit('private', {
-      chatroom: message._id,
+      id: message.id,
     });
   }
 

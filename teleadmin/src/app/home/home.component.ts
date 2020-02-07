@@ -4,7 +4,10 @@ import {AuthService} from '../auth/auth.service';
 import {BehaviorSubject} from 'rxjs';
 import {SearchBarService} from './search-bar/search-bar.service';
 import {LivestreamService} from '../livestream/livestream.service';
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {NotificationComponent} from '../livestream/notification/notification.component';
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
+
 
 @Component({
   selector: 'app-home',
@@ -13,22 +16,25 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private authService: AuthService,
-              private searchBarService: SearchBarService, private liveStream: LivestreamService,
-              private snackBar: MatSnackBar) { }
   user: BehaviorSubject<any>;
   results: BehaviorSubject<object[]>;
 
-  ngOnInit() {
+  constructor(private fb: FormBuilder, private authService: AuthService,
+              private searchBarService: SearchBarService, private liveStream: LivestreamService,
+              private snackBar: MatSnackBar, private bottomSheet: MatBottomSheet) { }
+
+
+    openBottomSheet(x: number): void {
+      this.bottomSheet.open(NotificationComponent, {
+        data: x
+      });
+    }
+
+    ngOnInit() {
     this.results = this.searchBarService.results;
-    this.user = this.authService.user;
-    this.authService.user.subscribe(user => {
-      if (user.status === 1) {
-        this.liveStream.connectRoom(user._id);
-      }
-    });
-    this.liveStream.getCall().subscribe(_ => {
-      this.snackBar.open('APPEL EN COURS');
+    this.liveStream.connectRoom(this.authService.user.getValue()._id);
+    this.liveStream.getCall().subscribe(data => {
+      this.openBottomSheet(data);
     });
   }
 

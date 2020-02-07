@@ -1,12 +1,11 @@
 <mat-nav-list style="height: 40vh;" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="50px" >
-    
-    <a mat-list-item style="text-align: center;" >
-      <span mat-line>Votre rendez-vous de 15h15 est prêt !</span>
-      <span mat-line>L'accompagnateur NomAccompagnateur vous appelle </span>
+
+    <a *ngIf="employee | async as employee" mat-list-item style="text-align: center;" >
+      <p mat-line>{{employee.name}} is calling you</p>
     </a>
-  
+
     <div mat-list-item (click)="openLink($event)" fxLayoutAlign="center center" fxLayoutGap="50px">
         <span><button mat-fab style="background-color:green"><mat-icon>phone_in_talk</mat-icon></button></span>
         <span><button mat-fab style="background-color:red"><mat-icon>phone_callback</mat-icon></button></span>
     </div>
-  </mat-nav-list>
+</mat-nav-list>

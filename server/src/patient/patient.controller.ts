@@ -13,23 +13,20 @@ export class PatientController {
     }
 
 
-    @Get(':type/:value')
-    getPatients(@Param('type') type, @Param('value') value) {
-        return this.patientService.getPatients(type, value);
+    @Get('all/:value')
+    getPatients(@Param('value') value) {
+        return this.patientService.getPatients(value);
     }
-
 
     @Post()
     addPatient(@Body() datas: any): object {
         return this.patientService.addPatient(datas);
     }
 
-
     @Patch()
     modifyPatient(@Body() datas: any): object {
         return this.patientService.modifyPatient(datas);
     }
-
 
     @Delete()
     deletePatient(@Body() datas: any): object {
