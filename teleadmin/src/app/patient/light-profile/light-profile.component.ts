@@ -9,7 +9,7 @@ import {Patient} from '../patient.interface';
 export class LightProfileComponent implements OnInit {
 
 
-  @Input() profile: Patient;
+  @Input() patient: Patient;
   constructor() { }
 
   ngOnInit() {

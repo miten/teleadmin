@@ -7,19 +7,22 @@ import {PatientService} from '../../patient/patient.service';
 })
 export class SearchBarService {
 
-  results = new BehaviorSubject(null);
+  employeesR = new BehaviorSubject(null);
+  patientsR = new BehaviorSubject(null);
 
   constructor(private employeeService: EmployeeService, private patientService: PatientService) {}
 
   getEmployees(value: string) {
     this.employeeService.getEmployees(value)
-      .then(res => this.results.next(res))
+      .then(res => this.employeesR.next(res))
+      .then(res => this.patientsR.next(res))
       .catch(err => console.log(err));
   }
 
   getPatients(value: string) {
     this.patientService.getPatients(value)
-      .then(res => this.results.next(res))
+      .then(res => this.patientsR.next(res))
+      .then(res => this.employeesR.next(res))
       .catch(err => console.log(err));
   }
 }

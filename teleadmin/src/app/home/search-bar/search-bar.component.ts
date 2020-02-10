@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SearchBarService} from './search-bar.service';
 
@@ -9,7 +9,8 @@ import {SearchBarService} from './search-bar.service';
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private searchBarService: SearchBarService) { }
+  constructor(private fb: FormBuilder, private searchBarService: SearchBarService) {
+  }
 
   searchForm: FormGroup;
   patient = true;
@@ -23,6 +24,7 @@ export class SearchBarComponent implements OnInit {
     }
   }
 
+
   selected(x) {
     if (x === 1) {
       this.patient = true;
@@ -35,10 +37,8 @@ export class SearchBarComponent implements OnInit {
 
 
   ngOnInit() {
-
     this.searchForm = this.fb.group({
       query: ['', [Validators.required, Validators.minLength(3)]]
     });
   }
-
 }

@@ -8,6 +8,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {NotificationComponent} from '../livestream/notification/notification.component';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {Employee} from "../employee/employee.interface";
+import {Patient} from "../patient/patient.interface";
 
 
 @Component({
@@ -18,7 +19,8 @@ import {Employee} from "../employee/employee.interface";
 export class HomeComponent implements OnInit {
 
   user: BehaviorSubject<any>;
-  results: BehaviorSubject<Employee[]>;
+  employeesR: BehaviorSubject<Employee[]>;
+  patientsR: BehaviorSubject<Patient[]>;
 
   constructor(private fb: FormBuilder, private authService: AuthService,
               private searchBarService: SearchBarService, private liveStream: LivestreamService,
@@ -32,7 +34,8 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-    this.results = this.searchBarService.results;
+    this.employeesR = this.searchBarService.employeesR;
+    this.patientsR = this.searchBarService.patientsR;
     this.liveStream.connectRoom(this.authService.user.getValue()._id);
     this.liveStream.getCall().subscribe(data => {
       this.openBottomSheet(data);

@@ -10,7 +10,8 @@
             <app-search-bar></app-search-bar>
         </mat-card>
         <div class="results" fxLayout="column" fxLayoutGap="10px">
-          <app-light-profile *ngFor="let profile of results | async" [profile]="profile"></app-light-profile>
+          <app-light-profiled *ngFor="let employee of employeesR | async" [employee]="employee"></app-light-profiled>
+          <app-light-profile *ngFor="let patient of patientsR | async" [patient]="patient"></app-light-profile>
         </div>
     </div>
 </div>

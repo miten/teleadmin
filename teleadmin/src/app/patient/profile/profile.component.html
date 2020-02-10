@@ -1,22 +1,34 @@
 <div fxLayout="row" class="content" fxLayoutAlign="center start">
   <div fxLayout="column" fxLayoutAlign="center stretch" style="width: 80%; "
        fxLayoutGap="15px">
-    <div fxLayout="row" fxLayoutAlign="center stretch"><h1>Fiche patient</h1></div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <button routerLink="/home" mat-fab color="primary"><mat-icon>arrow_back_ios</mat-icon></button>
+      <h3>Fiche patient</h3>
+      <p></p>
+    </div>
     <mat-card fxLayout="row" fxLayout.lt-md="column">
-      <form [formGroup]="loginForm" fxFlex='70' >
+      <form [formGroup]="loginForm" fxFlex='70'>
         <div fxLayout="column" fxLayoutAlign="center start" fxFlex>
           
           
           <mat-form-field appearance="legacy">
-            <mat-label>Name</mat-label>
+            <mat-label>Prénom</mat-label>
             <input formControlName="name" matInput type="text">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Nom</mat-label>
+            <input formControlName="surname" matInput type="text">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>N°SECU</mat-label>
+            <input formControlName="secu" matInput type="text">
           </mat-form-field>
         </div>
       </form>
-        <div fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="10px">
-          <button *ngIf="patient; else elseBlock" (click)="onSubmit()" mat-raised-button style="background-color: green; color:white">Modifier patient</button>
+        <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+          <button *ngIf="patient; else elseBlock" (click)="modif()" mat-raised-button style="background-color: green; color:white">Modifier patient</button>
+          <button *ngIf="patient && loginForm.enabled" (click)="onSubmit()" mat-raised-button style="background-color: green; color:white">Valider</button>
           <ng-template #elseBlock><button (click)="onSubmit()" mat-raised-button style="background-color: green; color:white">Ajouter patient</button></ng-template>
-          <button routerLink="/home" mat-raised-button color="warn">Annuler</button>
         </div>
     </mat-card>
   </div>
