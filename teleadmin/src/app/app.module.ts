@@ -27,7 +27,6 @@ import { LightProfiledComponent } from './employee/light-profiled/light-profiled
 import { LivestreamComponent } from './livestream/livestream.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotificationComponent } from './livestream/notification/notification.component';
-import { MatListModule } from '@angular/material';
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
 
 import { MatNavList, MatListModule } from '@angular/material';
