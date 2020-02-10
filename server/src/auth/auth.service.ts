@@ -33,7 +33,7 @@ export class AuthService {
       if (user) {
         const userData = await this.employeesService.getEmployee(user._id);
         if (userData) {
-          const payload = {_id: user._id, status: userData.status};
+          const payload = {_id: user._id, status: userData['status']};
           return {access_token: this.jwtService.sign(payload)};
         }
       }
@@ -47,8 +47,7 @@ export class AuthService {
       const userExist = await this.employeesService.getEmployeeByCps(datas.cps);
       if (!userExist) {
         const newUser = await this.loginModel.create(datas);
-        const newUserData = await this.employeesService.addMedecin({cps: newUser.cps, _id: newUser._id});
-        return newUserData;
+        return await this.employeesService.addMedecin({cps: newUser.cps, _id: newUser._id});
       } else {
         return new ForbiddenException();
       }

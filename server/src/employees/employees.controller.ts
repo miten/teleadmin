@@ -12,12 +12,12 @@ export class EmployeesController {
 
     @UseGuards(AuthGuard('jwt'), RolesGuard)
     @Roles(0)
-    @Post()
+    @Post('medecin')
     addMedecin(@Body() datas: any) {
         return this.Employeeservice.addMedecin(datas);
     }
 
-    @Post()
+    @Post('acc')
     addAcc(@Body() datas: any) {
         return this.Employeeservice.addAcc(datas);
     }

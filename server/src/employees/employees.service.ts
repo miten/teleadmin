@@ -1,4 +1,4 @@
-import {Injectable, Logger, NotFoundException} from '@nestjs/common';
+import {ForbiddenException, Injectable, Logger, NotFoundException} from '@nestjs/common';
 import {Model} from 'mongoose';
 import {InjectModel} from '@nestjs/mongoose';
 import {EmployeeDto} from './schema/employee.dto';
@@ -10,31 +10,36 @@ export class EmployeesService {
 
     constructor(@InjectModel('Employee') private readonly employeeModel: Model<any>) {}
 
-    async addMedecin(datas: any): Promise<EmployeeDto> {
-        datas.status = 1;
-        datas.photo = 'medecin';
-        const medecin = new this.employeeModel(datas);
-        return medecin.save();
+    async addMedecin(datas: any): Promise<EmployeeDto  | ForbiddenException> {
+        try {
+            datas.status = 1;
+            datas.photo = 'medecin';
+            return await this.employeeModel.create(datas);
+        } catch (e) {
+            return new ForbiddenException(e);
+        }
+
     }
 
-    async addAcc(datas: any): Promise<EmployeeDto> {
-        datas.status = 2;
-        datas.photo = 'acc';
-        const acc = new this.employeeModel(datas);
-        return acc.save();
+    async addAcc(datas: any): Promise<EmployeeDto | ForbiddenException> {
+        try {
+            datas.status = 2;
+            datas.photo = 'acc';
+            return await this.employeeModel.create(datas);
+        } catch (e) {
+            return new ForbiddenException(e);
+        }
+
     }
 
 
-    async getEmployee(id: string): Promise<EmployeeDto[] | NotFoundException | any> {
+    async getEmployee(id: string): Promise<EmployeeDto[] | NotFoundException> {
         try {
             return await this.employeeModel.findById(id);
         } catch (e) {
             return new NotFoundException(e);
         }
     }
-
-
-
 
 
     async getEmployees(value: string): Promise<object | NotFoundException> {

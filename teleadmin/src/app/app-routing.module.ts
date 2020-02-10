@@ -17,6 +17,7 @@ const routes: Routes = [
       { path: '', redirectTo: '/home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent},
       { path: 'patient/:id', component: ProfileComponent},
+      { path: 'employee/:id', component: ProfileComponent},
       { path: 'add-patient', component: AddPatientComponent},
       { path: 'admin', component: AdminComponent},
       { path: 'livestream', component: LivestreamComponent}

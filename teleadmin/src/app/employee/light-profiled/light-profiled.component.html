@@ -1,5 +1,5 @@
-<mat-card fxLayout="row" fxLayoutAlign="start center">
-  <p>{{employee.photo}}</p>
-  <p>{{employee.name}}</p>
-  <button *ngIf="employee.status === 1" mat-raised-button (click)="connect()">Rechercher</button>
+<mat-card routerLink="../employee/{{employee._id}}" class="profile" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+    <img alt="profile_photo" src="/assets/img/{{employee.photo}}.png">
+    <p>{{employee.status === 1 ? 'Dr. ' : 'Accompagnateur '}} {{employee.name | capitalize}} {{employee.surname | capitalize}}</p>
+    <button fxFlex="nogrow" mat-raised-button (click)="connect()">Connecter</button>
 </mat-card>

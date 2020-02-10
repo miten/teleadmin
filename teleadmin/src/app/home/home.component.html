@@ -1,9 +1,11 @@
 <div fxLayout="column" class="content" fxLayoutAlign="start center">
-    <div fxLayout="column" fxLayoutAlign="start stretch" style="width: 80%; background-color: white;"
-        fxLayoutGap="15px">
-        <mat-card>
+    <div fxLayout="column" fxLayoutAlign="start stretch" style="width: 80%;" fxLayoutGap="15px">
+        <mat-card fxLayout="column" fxLayoutGap="30px">
             <div fxLayout="row" fxLayoutAlign="start center">
-                <button mat-raised-button routerLink="../add-patient">Ajouter un patient</button>
+                <button mat-raised-button routerLink="../add-patient">
+                  <mat-icon>person_add</mat-icon>
+                  Ajouter un patient
+                </button>
             </div>
             <app-search-bar></app-search-bar>
         </mat-card>

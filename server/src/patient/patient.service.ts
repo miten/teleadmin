@@ -31,9 +31,9 @@ export class PatientService {
         }
     }
 
-    async addPatient(params): Promise<any> {
+    async addPatient(datas): Promise<any> {
         try {
-            return await this.patientModel.create(params);
+            return await this.patientModel.create(datas);
         } catch (e) {
             return new NotFoundException(e);
         }

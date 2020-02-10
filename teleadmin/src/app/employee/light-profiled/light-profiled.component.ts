@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {LivestreamService} from '../../livestream/livestream.service';
 import {BehaviorSubject} from 'rxjs';
 import {AuthService} from '../../auth/auth.service';
+import {Employee} from '../employee.interface';
 
 @Component({
   selector: 'app-light-profiled',
@@ -10,7 +11,7 @@ import {AuthService} from '../../auth/auth.service';
 })
 export class LightProfiledComponent implements OnInit {
 
-  @Input() employee;
+  @Input() employee: Employee;
   $user: BehaviorSubject<any>;
 
 

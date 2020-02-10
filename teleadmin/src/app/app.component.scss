@@ -1,17 +1,44 @@
-.logo{
-
-}
-
-.logout{
+header {
+  background-color: rgba(202, 202, 202, 0.5);
+  margin-bottom: 2%;
+  padding: 0 2% 0 2%;
+  .logo{
+    height: 70px;
+    width: auto;
     cursor: pointer;
-    width: 50px;
-    height: 60px;
+  }
+
+  .logout{
+    cursor: pointer;
+    height: 50px;
+    width: auto;
+  }
 }
+
+
+.user {
+  height: 80px;
+  padding-left: 10%;
+  img {
+    background-color: lightgray;
+    border-radius: 35px;
+    height: 60px;
+    width: 60px;
+  }
+
+  h3 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5em;
+    color: #4a4a4a;
+  }
+}
+
+
 
 footer{
     position:fixed;
     height: 75px;
     background-color: #051d3c;
     bottom: 0;
-    
+
 }

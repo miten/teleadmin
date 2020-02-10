@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import {EmployeeService} from '../../employee/employee.service';
 
@@ -8,7 +8,7 @@ import {EmployeeService} from '../../employee/employee.service';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent implements OnInit, OnDestroy {
 
   constructor(private employeeService: EmployeeService, private bottomSheetRef: MatBottomSheetRef<NotificationComponent>,
               @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {}
@@ -21,5 +21,8 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.employee = this.employeeService.getEmployee(this.data.id);
+  }
+
+  ngOnDestroy(): void {
   }
 }

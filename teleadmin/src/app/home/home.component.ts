@@ -7,6 +7,7 @@ import {LivestreamService} from '../livestream/livestream.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {NotificationComponent} from '../livestream/notification/notification.component';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
+import {Employee} from "../employee/employee.interface";
 
 
 @Component({
@@ -17,7 +18,7 @@ import {MatBottomSheet} from '@angular/material/bottom-sheet';
 export class HomeComponent implements OnInit {
 
   user: BehaviorSubject<any>;
-  results: BehaviorSubject<object[]>;
+  results: BehaviorSubject<Employee[]>;
 
   constructor(private fb: FormBuilder, private authService: AuthService,
               private searchBarService: SearchBarService, private liveStream: LivestreamService,
