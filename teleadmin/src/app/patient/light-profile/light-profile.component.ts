@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Patient} from '../patient.interface';
 
 @Component({
   selector: 'app-light-profile',
@@ -8,7 +9,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class LightProfileComponent implements OnInit {
 
 
-  @Input() profile: object;
+  @Input() profile: Patient;
   constructor() { }
 
   ngOnInit() {

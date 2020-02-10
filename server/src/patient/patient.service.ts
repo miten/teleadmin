@@ -11,7 +11,7 @@ export class PatientService {
 
     constructor(@InjectModel('Patient') private readonly patientModel: Model<any>) {}
 
-    async getPatient(id: string): Promise<object | NotFoundException> {
+    async getPatient(id: string): Promise<object | any | NotFoundException> {
         try {
             return await this.patientModel.findById(id);
         } catch (e) {
@@ -41,12 +41,10 @@ export class PatientService {
 
     async modifyPatient(datas: object | any): Promise<any> {
         try {
-            logger.log(datas);
             const user = await this.patientModel.findById(datas._id);
-            logger.log(user);
             await user.updateOne(datas);
             await user.save();
-            return await this.patientModel.findById(user._id);
+            return await this.patientModel.findById(datas._id);
         } catch (e) {
             return new NotFoundException(e);
         }
