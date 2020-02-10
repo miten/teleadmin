@@ -20,7 +20,6 @@ export class PatientController {
 
     @Post()
     addPatient(@Body() datas: any): object {
-        Logger.log(datas);
         return this.patientService.addPatient(datas);
     }
 

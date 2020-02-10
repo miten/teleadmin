@@ -14,11 +14,16 @@ export class ProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private patientService: PatientService) {}
 
 
-  fields = ['gender', 'name', 'surname', 'city', 'street', 'email', 'phone'];
   patient: Patient;
   loginForm: FormGroup;
 
+  modif() {
+
+    this.loginForm.enable();
+  }
+
   onSubmit() {
+
     const datas = this.loginForm.value;
     if (this.patient) {
       datas._id = this.patient._id;
@@ -30,6 +35,8 @@ export class ProfileComponent implements OnInit {
         .then(res => this.patient = res)
         .catch(err => console.log(err));
     }
+
+
   }
 
 
@@ -38,14 +45,18 @@ export class ProfileComponent implements OnInit {
       this.loginForm = this.fb.group({
 
         name: [this.patient.name, [Validators.minLength(3)]],
+        surname: [this.patient.surname, [Validators.minLength(3)]],
+        secu: [this.patient.secu, [Validators.minLength(3)]],
 
       });
+      this.loginForm.disable();
     } else {
 
         this.loginForm = this.fb.group({
 
           name: ['', [Validators.minLength(3)]],
-
+          surname: ['', [Validators.minLength(3)]],
+          secu: ['', [Validators.minLength(3)]],
 
         });
     }

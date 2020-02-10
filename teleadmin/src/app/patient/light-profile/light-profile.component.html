@@ -1,5 +1,5 @@
-<mat-card routerLink="../patient/{{profile._id}}" class="profile" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
-  <img alt="profile_photo" src="/assets/img/{{profile.photo}}.png">
-  <p>Patient {{profile.name | capitalize}}</p>
+<mat-card routerLink="../patient/{{patient._id}}" class="profile" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+  <img alt="profile_photo" src="/assets/img/patient.png">
+  <p>Patient {{patient.name | capitalize}} {{patient.surname | capitalize}}</p>
   <p></p>
 </mat-card>
