@@ -3,7 +3,6 @@ import { environment } from '../environments/environment';
 import { Router } from '@angular/router';
 import {AuthService} from './auth/auth.service';
 import {BehaviorSubject} from 'rxjs';
-import {LivestreamService} from './livestream/livestream.service';
 
 @Component({
   selector: 'app-root',

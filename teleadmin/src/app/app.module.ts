@@ -28,7 +28,7 @@ import { LivestreamComponent } from './livestream/livestream.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotificationComponent } from './livestream/notification/notification.component';
 import { MatNavList, MatListModule } from '@angular/material';
-
+import {WebcamModule} from 'ngx-webcam';
 
 
 const config: SocketIoConfig = { url: environment.url, options: {}};
@@ -49,7 +49,8 @@ export function tokenGetter() {
     LightProfiledComponent,
     LivestreamComponent,
     AdminComponent,
-    NotificationComponent
+    NotificationComponent,
+    
     
 
   ],
@@ -62,6 +63,7 @@ export function tokenGetter() {
     SocketIoModule.forRoot(config),
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    WebcamModule,
 
     MatInputModule,
     MatSnackBarModule,
