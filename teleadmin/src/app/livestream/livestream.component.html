@@ -1,6 +1,6 @@
-<h1>
+<h1 style="text-align: center;">
     Consultation
-  </h1>
+</h1>
 <div style="text-align:center" fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="15px" >
     
   
@@ -13,7 +13,9 @@
               (cameraSwitched)="cameraWasSwitched($event)"
               (initError)="handleInitError($event)"
       ></webcam>
+      
     </mat-card>
+    <button mat-fab style="background-color: white;"><i class="material-icons">print</i></button>
     <mat-card>
       <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
               [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
