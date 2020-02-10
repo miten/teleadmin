@@ -26,10 +26,9 @@ import { LightProfiledComponent } from './employee/light-profiled/light-profiled
 import { LivestreamComponent } from './livestream/livestream.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotificationComponent } from './livestream/notification/notification.component';
-import { MatListModule } from '@angular/material';
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
-import {WebcamModule} from 'ngx-webcam';
-
+import { WebcamModule } from 'ngx-webcam';
+import { MatListModule } from '@angular/material'
 
 const config: SocketIoConfig = { url: environment.url, options: {}};
 export function tokenGetter() {
