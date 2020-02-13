@@ -17,6 +17,6 @@ export class LoginService {
     return this.http.post(`${this.api}/login`, { username, password }).toPromise()
       .then(res => localStorage.setItem('access_token', res['access_token']))
       .then(_ => this.authService.setUserData())
-      .then(res => this.router.navigate(['/home']));
+      .then(_ => this.router.navigate(['/home']));
   }
 }

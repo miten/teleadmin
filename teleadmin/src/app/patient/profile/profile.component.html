@@ -7,7 +7,7 @@
       <p></p>
     </div>
     <mat-card fxLayout="row" fxLayout.lt-md="column">
-      <form [formGroup]="loginForm" fxFlex='70'>
+      <form *ngIf="patient !== undefined" [formGroup]="loginForm" fxFlex='70'>
         <div fxLayout="column" fxLayoutAlign="center start" fxFlex>
           <mat-form-field appearance="legacy">
             <mat-label>Prénom</mat-label>

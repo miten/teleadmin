@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatSnackBar} from '@angular/material'; 
+import {MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
 import {LoginService} from './login.service';
 import { environment } from '../../../environments/environment';
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       this.snackBar.open('Formulaire invalide', 'X', {duration: 3000});
     } else {
       this.loginService.login(this.loginForm.value.password, this.loginForm.value.username)
-        .catch(_ => this.snackBar.open('Identifiants incorrects', 'X', {duration: 3000}));
+        .catch(err => this.snackBar.open('Identifiants incorrects', 'X', {duration: 3000}));
     }
   }
 

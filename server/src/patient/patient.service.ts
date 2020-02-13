@@ -13,7 +13,13 @@ export class PatientService {
 
     async getPatient(id: string): Promise<object | any | NotFoundException> {
         try {
-            return await this.patientModel.findById(id);
+            return await this.patientModel.findById(id).populate({
+                path: 'sessions',
+                populate: [
+                    { path: 'medecin'},
+                    {path: 'acc'},
+                ],
+            }) ;
         } catch (e) {
             return new NotFoundException(e);
         }

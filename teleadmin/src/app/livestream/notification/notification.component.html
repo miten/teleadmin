@@ -1,11 +1,11 @@
 <mat-nav-list style="height: 40vh;" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="50px" >
-  
+
   <audio src="/assets/media/appel.mp3" autoplay>
     Votre navigateur ne supporte pas l'élément <code>audio</code>.
   </audio>
     <a *ngIf="employee | async as employee" mat-list-item style="text-align: center;" >
-      
-      <p mat-line>{{employee.name}} is calling you</p>
+
+      <p mat-line>{{employee.name | capitalize}} is calling you</p>
     </a>
 
     <div mat-list-item (click)="openLink($event)" fxLayoutAlign="center center" fxLayoutGap="50px">
