@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,7 +28,11 @@ import { AdminComponent } from './admin/admin.component';
 import { NotificationComponent } from './livestream/notification/notification.component';
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
 import { WebcamModule } from 'ngx-webcam';
-import { MatListModule, MatDatepickerModule } from '@angular/material'
+import { MatListModule, MatDatepickerModule } from '@angular/material';
+import { ConsultationComponent } from './patient/consultation/consultation.component'
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {DatesortPipe} from "../pipes/datesort.pipe";
 
 const config: SocketIoConfig = { url: environment.url, options: {}};
 export function tokenGetter() {
@@ -48,7 +52,9 @@ export function tokenGetter() {
     LivestreamComponent,
     AdminComponent,
     NotificationComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    DatesortPipe,
+    ConsultationComponent
 
 
 
@@ -64,6 +70,7 @@ export function tokenGetter() {
     ReactiveFormsModule,
     WebcamModule,
 
+
     MatInputModule,
     MatSnackBarModule,
     MatCardModule,
@@ -74,6 +81,8 @@ export function tokenGetter() {
     MatBottomSheetModule,
     MatListModule,
     MatDatepickerModule,
+    MatExpansionModule,
+    MatTooltipModule,
 
     JwtModule.forRoot({
       config: {
@@ -88,7 +97,7 @@ export function tokenGetter() {
     NotificationComponent
   ],
 
-  providers: [],
+  providers: [ { provide: LOCALE_ID, useValue: 'en-FR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

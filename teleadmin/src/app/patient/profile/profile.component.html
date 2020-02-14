@@ -4,13 +4,15 @@
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <button routerLink="/home" mat-fab color="primary"><mat-icon>arrow_back_ios</mat-icon></button>
       <h3>Fiche patient</h3>
-      <p></p>
     </div>
+
+      <app-consultation [consultation]="session" *ngFor="let session of patient.sessions | dateSort"></app-consultation>
+
     <mat-card fxLayout="row" fxLayout.lt-md="column">
       <form *ngIf="patient !== undefined" [formGroup]="loginForm" fxFlex='70'>
         <div fxLayout="column" fxLayoutAlign="center start" fxFlex>
-          
-          
+
+
           <mat-form-field appearance="legacy">
             <mat-label>Prénom</mat-label>
             <input formControlName="name" matInput type="text">
