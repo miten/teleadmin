@@ -11,4 +11,8 @@ export interface Patient {
   birthday: Date;
   sessions: object[];
   photo: string;
+  doctor: string;
+  allergy: string;
+  vaccins: string;
+  notes: string;
 }

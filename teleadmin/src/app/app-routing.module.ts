@@ -6,6 +6,7 @@ import {AuthGuard} from './auth/auth.guard';
 import {ProfileComponent} from './patient/profile/profile.component';
 import {AdminComponent} from './admin/admin.component';
 import {LivestreamComponent} from './livestream/livestream.component';
+import { SessionComponent } from './patient/session/session.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
       { path: 'patient/:id', component: ProfileComponent},
       { path: 'employee/:id', component: ProfileComponent},
       { path: 'admin', component: AdminComponent},
-      { path: 'livestream', component: LivestreamComponent}
+      { path: 'livestream', component: LivestreamComponent},
+      { path: 'session', component: SessionComponent}
     ]
   },
   {path: 'login' , component: LoginComponent},

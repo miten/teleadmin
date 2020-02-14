@@ -31,8 +31,8 @@ import { WebcamModule } from 'ngx-webcam';
 import { MatListModule, MatDatepickerModule } from '@angular/material';
 import { ConsultationComponent } from './patient/consultation/consultation.component'
 import {MatExpansionModule} from '@angular/material/expansion';
-import {MatTooltipModule} from "@angular/material/tooltip";
-import {DatesortPipe} from "../pipes/datesort.pipe";
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {DatesortPipe} from '../pipes/datesort.pipe';
 
 const config: SocketIoConfig = { url: environment.url, options: {}};
 export function tokenGetter() {
@@ -69,7 +69,6 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     ReactiveFormsModule,
     WebcamModule,
-
 
     MatInputModule,
     MatSnackBarModule,

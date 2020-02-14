@@ -13,21 +13,71 @@
         <div fxLayout="column" fxLayoutAlign="center start" fxFlex>
 
 
+
           <mat-form-field appearance="legacy">
-            <mat-label>Prénom</mat-label>
-            <input formControlName="name" matInput type="text">
+            <mat-label>Civilité</mat-label>
+            <input formControlName="gender" matInput type="text">
           </mat-form-field>
           <mat-form-field appearance="legacy">
             <mat-label>Nom</mat-label>
-            <input formControlName="surname" matInput type="text">
+            <input formControlName="name" matInput type="text">
           </mat-form-field>
           <mat-form-field appearance="legacy">
-            <mat-label>N° Sécu</mat-label>
-            <input formControlName="secu" matInput type="text">
+            <mat-label>Prénom</mat-label>
+            <input formControlName="surname" matInput type="text">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="birthday" matInput [matDatepicker]="picker" placeholder="Birthday">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Rue</mat-label>
+            <input formControlName="street" matInput type="text">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Ville</mat-label>
+            <input formControlName="city" matInput type="text">
           </mat-form-field>
         </div>
+          <div fxLayout="column" fxLayoutAlign="center start" fxFlex>
+          <mat-form-field appearance="legacy">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput type="text">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Téléphone</mat-label>
+            <input formControlName="phone" matInput type="text">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Médecin Traitant</mat-label>
+            <input formControlName="doctor" matInput type="text">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Allergies</mat-label>
+            <input formControlName="allergy" matInput type="text">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Vaccins</mat-label>
+            <input formControlName="vaccins" matInput type="text">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Notes</mat-label>
+            <input formControlName="notes" matInput type="text">
+          </mat-form-field>
+
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start start" fxFlex>
+        <mat-form-field appearance="legacy">
+          <mat-label>N° Sécurité Sociale</mat-label>
+          <input formControlName="secu" matInput type="text">
+        </mat-form-field>
+      </div>
       </form>
+
         <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+
           <button *ngIf="patient; else elseBlock" (click)="modif()" mat-raised-button style="background-color: green; color:white">Modifier patient</button>
           <button *ngIf="patient && loginForm.enabled" (click)="onSubmit()" mat-raised-button style="background-color: green; color:white">Valider</button>
           <ng-template #elseBlock><button (click)="onSubmit()" mat-raised-button style="background-color: green; color:white">Ajouter patient</button></ng-template>
