@@ -1,7 +1,9 @@
 import * as mongoose from 'mongoose';
+import {Schema} from 'mongoose';
 
 export const PatientSchema = new mongoose.Schema({
     gender: {type: String,  enum: [ 'M', 'F' ]},
+    sessions: [{type: Schema.Types.ObjectId, ref: 'Session'}],
     name: {type: String, lowercase: true, required: true },
     surname: {type: String, lowercase: true, required: true},
     city: {type: String, lowercase: true},
