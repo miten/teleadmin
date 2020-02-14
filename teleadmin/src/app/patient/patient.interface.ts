@@ -10,4 +10,8 @@ export interface Patient {
   phone: string;
   birthday: Date;
   photo: string;
+  doctor: string;
+  allergy: string;
+  vaccins: string;
+  notes: string;
 }

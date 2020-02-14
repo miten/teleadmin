@@ -28,7 +28,9 @@ import { AdminComponent } from './admin/admin.component';
 import { NotificationComponent } from './livestream/notification/notification.component';
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
 import { WebcamModule } from 'ngx-webcam';
-import { MatListModule, MatDatepickerModule } from '@angular/material'
+import { MatListModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import {MatTreeModule} from '@angular/material/tree';
+import { SessionComponent } from './patient/session/session.component'
 
 const config: SocketIoConfig = { url: environment.url, options: {}};
 export function tokenGetter() {
@@ -48,7 +50,8 @@ export function tokenGetter() {
     LivestreamComponent,
     AdminComponent,
     NotificationComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    SessionComponent
 
 
 
@@ -74,6 +77,8 @@ export function tokenGetter() {
     MatBottomSheetModule,
     MatListModule,
     MatDatepickerModule,
+    MatTreeModule,
+    MatNativeDateModule,
 
     JwtModule.forRoot({
       config: {
