@@ -29,10 +29,14 @@ import { NotificationComponent } from './livestream/notification/notification.co
 import { CapitalizePipe } from '../pipes/capitalize.pipe';
 import { WebcamModule } from 'ngx-webcam';
 import { MatListModule, MatDatepickerModule } from '@angular/material';
-import { ConsultationComponent } from './patient/consultation/consultation.component'
+import { ConsultationsComponent } from './patient/consultations/consultations.component'
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {DatesortPipe} from '../pipes/datesort.pipe';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatTreeModule} from '@angular/material/tree';
+import { PatientComponent } from './patient/patient.component';
+import { ConsultationComponent } from './patient/consultations/consultation/consultation.component';
 
 const config: SocketIoConfig = { url: environment.url, options: {}};
 export function tokenGetter() {
@@ -54,6 +58,8 @@ export function tokenGetter() {
     NotificationComponent,
     CapitalizePipe,
     DatesortPipe,
+    ConsultationsComponent,
+    PatientComponent,
     ConsultationComponent
 
 
@@ -81,7 +87,9 @@ export function tokenGetter() {
     MatListModule,
     MatDatepickerModule,
     MatExpansionModule,
+    MatNativeDateModule,
     MatTooltipModule,
+    MatTreeModule,
 
     JwtModule.forRoot({
       config: {

@@ -6,7 +6,9 @@ import {AuthGuard} from './auth/auth.guard';
 import {ProfileComponent} from './patient/profile/profile.component';
 import {AdminComponent} from './admin/admin.component';
 import {LivestreamComponent} from './livestream/livestream.component';
-import { SessionComponent } from './patient/session/session.component';
+import {ConsultationsComponent} from './patient/consultations/consultations.component';
+import {PatientComponent} from './patient/patient.component';
+
 
 
 const routes: Routes = [
@@ -16,11 +18,18 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full'},
       { path: 'home', component: HomeComponent},
-      { path: 'patient/:id', component: ProfileComponent},
       { path: 'employee/:id', component: ProfileComponent},
+      {
+        path: 'patient/:id', component: PatientComponent,
+        children: [
+          {path: '', component: ProfileComponent},
+          {path: 'profile', component: ProfileComponent},
+          {path: 'consultations', component: ConsultationsComponent},
+        ]
+      },
       { path: 'admin', component: AdminComponent},
       { path: 'livestream', component: LivestreamComponent},
-      { path: 'session', component: SessionComponent}
+      { path: 'consultations', component: ConsultationsComponent}
     ]
   },
   {path: 'login' , component: LoginComponent},

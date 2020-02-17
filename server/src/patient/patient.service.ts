@@ -1,7 +1,7 @@
 import {Injectable, NotFoundException, Logger} from '@nestjs/common';
 import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
-import {isNumber} from "../functions";
+import {isNumber} from '../functions';
 const logger = new Logger();
 
 @Injectable()
@@ -50,7 +50,7 @@ export class PatientService {
             const user = await this.patientModel.findById(datas._id);
             await user.updateOne(datas);
             await user.save();
-            return await this.patientModel.findById(datas._id);
+            return await this.getPatient(datas._id);
         } catch (e) {
             return new NotFoundException(e);
         }

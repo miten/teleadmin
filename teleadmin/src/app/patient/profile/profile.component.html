@@ -2,18 +2,12 @@
   <div fxLayout="column" fxLayoutAlign="center stretch" style="width: 80%; "
        fxLayoutGap="15px">
     <div fxLayout="row" fxLayoutAlign="space-between center">
-      <button routerLink="/home" mat-fab color="primary"><mat-icon>arrow_back_ios</mat-icon></button>
       <h3>Fiche patient</h3>
     </div>
 
-      <app-consultation [consultation]="session" *ngFor="let session of patient.sessions | dateSort"></app-consultation>
-
-    <mat-card fxLayout="row" fxLayout.lt-md="column">
-      <form *ngIf="patient !== undefined" [formGroup]="loginForm" fxFlex='70'>
+    <mat-card *ngIf="patient !== undefined"  fxLayout="row" fxLayout.lt-md="column">
+      <form [formGroup]="loginForm" fxFlex="70" [fxHide]="see">
         <div fxLayout="column" fxLayoutAlign="center start" fxFlex>
-
-
-
           <mat-form-field appearance="legacy">
             <mat-label>Civilité</mat-label>
             <input formControlName="gender" matInput type="text">
@@ -75,13 +69,6 @@
         </mat-form-field>
       </div>
       </form>
-
-        <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
-
-          <button *ngIf="patient; else elseBlock" (click)="modif()" mat-raised-button style="background-color: green; color:white">Modifier patient</button>
-          <button *ngIf="patient && loginForm.enabled" (click)="onSubmit()" mat-raised-button style="background-color: green; color:white">Valider</button>
-          <ng-template #elseBlock><button (click)="onSubmit()" mat-raised-button style="background-color: green; color:white">Ajouter patient</button></ng-template>
-        </div>
     </mat-card>
   </div>
 </div>
