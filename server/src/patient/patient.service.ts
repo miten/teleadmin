@@ -16,10 +16,10 @@ export class PatientService {
             return await this.patientModel.findById(id).populate({
                 path: 'sessions',
                 populate: [
-                    { path: 'medecin'},
+                    {path: 'medecin'},
                     {path: 'acc'},
                 ],
-            }) ;
+            });
         } catch (e) {
             return new NotFoundException(e);
         }

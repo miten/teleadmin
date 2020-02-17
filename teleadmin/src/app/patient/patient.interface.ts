@@ -9,6 +9,7 @@ export interface Patient {
   email: string;
   phone: string;
   birthday: Date;
+  sessions: object[];
   photo: string;
   doctor: string;
   allergy: string;

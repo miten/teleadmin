@@ -13,7 +13,6 @@ export class ProfileComponent implements OnInit {
 
 constructor(private route: ActivatedRoute, private fb: FormBuilder, private patientService: PatientService) {}
 
-
 patient: Patient;
 loginForm: FormGroup;
 
@@ -60,6 +59,7 @@ secu: [this.patient.secu, [Validators.minLength(3)]],
 });
 this.loginForm.disable();
 } else {
+
 
 this.loginForm = this.fb.group({
 gender: ['', [Validators.maxLength(1)]],
