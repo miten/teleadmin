@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-expansion-panel disabled="false">
+    <mat-expansion-panel-header>
+      <p>Consultation avec Dr. {{consultation.medecin.name | capitalize}} {{ consultation.medecin.surname | capitalize }} le {{consultation.date | date:'longDate'}}</p>
+    </mat-expansion-panel-header>
+    <mat-panel-description fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px">
+      <div class="file" *ngFor="let file of consultation.files" fxLayout="column" fxLayoutAlign="start center">
+        <img  matTooltip="Télécharger"  matTooltipPosition="above" src="assets/img/pdf.svg">
+        <p>{{file}}</p>
+      </div>
+    </mat-panel-description>
+  </mat-expansion-panel>
+</mat-card>
