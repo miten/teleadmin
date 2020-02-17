@@ -27,15 +27,15 @@ onSubmit() {
 const datas = this.loginForm.value;
 if (this.patient) {
 datas._id = this.patient._id;
-this.patientService.modifyPatient(datas)
+this.patientService.modifyPatient(datas.value)
 .then(res => this.patient = res)
 .catch(err => console.log(err));
 } else {
-this.patientService.addPatient(datas)
+this.patientService.addPatient(datas.value)
 .then(res => this.patient = res)
 .catch(err => console.log(err));
 }
-
+this.loginForm.disable();
 
 }
 
